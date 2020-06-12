@@ -12,6 +12,9 @@ import java.util.List;
 public class TagLayout extends ViewGroup {
     private String TAG = "chen";
     private List<List<View>> mChildViews=new ArrayList<>();
+
+    private BaseAdapter mAdapter;
+
     public TagLayout(Context context) {
         super(context);
     }
@@ -56,7 +59,8 @@ public class TagLayout extends ViewGroup {
                 log("转折处");
                 log("childView.getId():"+childView.toString());
                 //mChildViews.add(childViews);
-                height += childView.getMeasuredHeight()+params.topMargin+params.bottomMargin;
+                //换行，累加高度 加上一行的最大高度
+                height += maxHeight;
                 lineWidth=childView.getMeasuredWidth()+params.leftMargin+params.rightMargin;
 
                 //childViews.add(childView);
@@ -91,6 +95,7 @@ public class TagLayout extends ViewGroup {
         int left,top = getPaddingTop(),right,bottom;//
         for (List<View> childViews:mChildViews){
             left = getPaddingLeft();
+            int maxHeight = 0;
             for(View childView:childViews){
                 ViewGroup.MarginLayoutParams params = (MarginLayoutParams) childView.getLayoutParams();
                 left +=params.leftMargin;
@@ -102,9 +107,11 @@ public class TagLayout extends ViewGroup {
                 childView.layout(left,childTop,right,bottom);
                 //left 叠加
                 left +=childView.getMeasuredWidth()+params.rightMargin;
+                int childHeight = childView.getMeasuredHeight()+params.topMargin+params.bottomMargin;
+                maxHeight = Math.max(maxHeight,childHeight);
             }
-            ViewGroup.MarginLayoutParams params = (MarginLayoutParams) childViews.get(0).getLayoutParams();
-            top += childViews.get(0).getMeasuredHeight()+params.topMargin+params.bottomMargin;
+            //ViewGroup.MarginLayoutParams params = (MarginLayoutParams) childViews.get(0).getLayoutParams();
+            top += maxHeight;
         }
 
 
@@ -121,7 +128,23 @@ public class TagLayout extends ViewGroup {
         return new MarginLayoutParams(getContext(),attrs);
     }
 
+    public void setAdapter(BaseAdapter adapter){
+        if (adapter==null){
+            //抛出异常
+        }
+        //清空所有子View
+        removeAllViews();
+        mAdapter = null;
+        mAdapter = adapter;
+        int childCount = mAdapter.getCount();
+        for(int i=0;i<childCount;i++){
+            View childView=mAdapter.getView(i,this);
+            addView(childView);
+        }
+    }
+
     private void log(String str){
         Log.i(TAG,str);
     }
+
 }

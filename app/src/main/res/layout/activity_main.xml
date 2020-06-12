@@ -1,60 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.carl.customtaglayout.TagLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#ff0000">
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="11111111111"
-        android:textColor="#0000ff"
-        android:layout_margin="0dp"
-        android:id="@+id/tv1"
-        />
+<com.example.carl.customtaglayout.TagLayout
+    android:id="@+id/tab_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="222222222"
-        android:textColor="#0000ff"
-        android:layout_margin="0dp"
-        android:id="@+id/tv2"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3333333333333333333"
-        android:textColor="#0000ff"
-        android:layout_margin="0dp"
-        android:id="@+id/tv3"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="44444444444444"
-        android:textColor="#0000ff"
-        android:layout_margin="0dp"
-        android:id="@+id/tv4"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="55555555555"
-        android:textColor="#0000ff"
-        android:layout_margin="0dp"
-        android:id="@+id/tv5"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="66666666666666666666666666666666"
-        android:textColor="#0000ff"
-        android:layout_margin="0dp"
-        android:id="@+id/tv6"
-        />
-
-</com.example.carl.customtaglayout.TagLayout>
+</LinearLayout>
